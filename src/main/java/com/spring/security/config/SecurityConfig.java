@@ -2,6 +2,7 @@ package com.spring.security.config;
 
 
 import com.spring.security.utils.AppConstant;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -20,6 +21,19 @@ import java.util.List;
 
 @Configuration
 public class SecurityConfig {
+
+    @Value("${spring.security.admin.name}")
+    String adminName;
+    @Value("${spring.security.admin.password}")
+    String adminPassword;
+    @Value("${spring.security.user.name}")
+    String userName;
+    @Value("${spring.security.user.password}")
+    String userPassword;
+    @Value("${spring.security.roles.user}")
+    String roleUser;
+    @Value("${spring.security.roles.admin}")
+    String roleAdmin;
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -47,15 +61,15 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails admin = User.builder()
-                .username(AppConstant.ADMIN_NAME)
-                .password(passwordEncoder().encode(AppConstant.ADMIN_PASSWORD))
-                .roles(AppConstant.ROLE_ADMIN)
+                .username(adminName)
+                .password(passwordEncoder().encode(adminPassword))
+                .roles(roleAdmin)
                 .build();
 
         UserDetails user = User.builder()
-                .username(AppConstant.USER_NAME)
-                .password(passwordEncoder().encode(AppConstant.USER_PASSWORD))
-                .roles(AppConstant.ROLE_USER)
+                .username(userName)
+                .password(passwordEncoder().encode(userPassword))
+                .roles(roleUser)
                 .build();
 
         return new InMemoryUserDetailsManager(admin,user);
