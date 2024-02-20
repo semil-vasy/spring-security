@@ -9,5 +9,8 @@
 </head>
 <body>
     <h1>Admin Page</h1>
+    <h1>${email} </h1>
+    <h1>${role} </h1>
+    <a href="/logout"> Logout </a>
 </body>
 </html>
