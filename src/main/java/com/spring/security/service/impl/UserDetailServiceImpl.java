@@ -1,4 +1,4 @@
-package com.spring.security.security;
+package com.spring.security.service.impl;
 
 import com.spring.security.exception.ResourceNotFoundException;
 import com.spring.security.model.User;
@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomUserDetailService implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;

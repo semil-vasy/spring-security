@@ -1,5 +1,6 @@
 package com.spring.security.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spring.security.model.Role;
 import lombok.Data;
 
@@ -14,4 +15,5 @@ public class UserDto {
     private String password;
 
     private Role role;
+
 }
