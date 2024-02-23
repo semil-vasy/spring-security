@@ -11,6 +11,7 @@ import com.spring.security.repository.RoleRepository;
 import com.spring.security.repository.UserRepository;
 import com.spring.security.service.UserService;
 import com.spring.security.utils.AppConstant;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,6 +43,10 @@ public class UserServiceImpl implements UserService {
     private UserDetailServiceImpl userDetailsService;
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private HttpServletRequest request;
+
 
     @Override
     public UserDto registerUser(UserDto userDto) {
@@ -80,7 +85,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUser() {
+        String token = request.getHeader("Authorization").substring(7);
+        System.out.println(token);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        String userNameFromToken = jwtService.getUserNameFromToken(token);
+        System.out.println(userNameFromToken);
         User user = this.userDetailsService.loadUserByUsername(email);
         return this.modelMapper.map(user, UserDto.class);
     }
