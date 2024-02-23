@@ -19,6 +19,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -63,10 +64,8 @@ public class UserServiceImpl implements UserService {
         try {
             this.authenticate(request.getEmail(), request.getPassword());
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(request.getEmail());
-
             String token = jwtService.generateToken(userDetails);
             return JwtAuthResponse.builder().token(token).build();
-
         } catch (BadCredentialsException exception) {
             throw new ResourceNotFoundException(exception.getMessage());
         }
@@ -89,9 +88,10 @@ public class UserServiceImpl implements UserService {
     private void authenticate(String username, String password) {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         try {
-            this.authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+            Authentication authenticate = this.authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+            SecurityContextHolder.getContext().setAuthentication(authenticate);
         } catch (BadCredentialsException exception) {
-            throw new ResourceNotFoundException("Invalid username or password");
+            throw new UsernameNotFoundException("Invalid username or password");
         }
     }
 
