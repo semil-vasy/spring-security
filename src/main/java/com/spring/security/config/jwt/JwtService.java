@@ -22,7 +22,6 @@ public class JwtService {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
-
     public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
     }
@@ -36,7 +35,6 @@ public class JwtService {
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody();
     }
-
 
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);

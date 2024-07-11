@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getUser } from "../../utils/userService";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -38,15 +39,15 @@ const Home = () => {
   };
 
   return (
-    <>
-      <div>Name : {user.name}</div>
-      <div> Email : {user.email}</div>
-      <div>
-        {" "}
-        Role : {user.role.roleName}
+    <main className="home-container">
+      <div className="card">
+        <h2 className="name"> {user.name}</h2>
+        <p className="email">{user.email}</p>
+        <p className="role"> {user.role.roleName}</p>
         <button onClick={handleLogout}>Logout</button>
       </div>
-    </>
+      <div></div>
+    </main>
   );
 };
 

@@ -1,6 +1,5 @@
 package com.spring.security.controller;
 
-import com.spring.security.config.jwt.JwtService;
 import com.spring.security.dto.JwtAuthRequest;
 import com.spring.security.dto.JwtAuthResponse;
 import com.spring.security.dto.UserDto;
