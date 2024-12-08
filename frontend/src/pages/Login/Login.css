@@ -1,0 +1,75 @@
+/* LoginForm.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa; /* Light gray background color for the body */
+}
+
+.login-form-container {
+  max-width: 400px;
+  margin: 100px auto; /* Centering the form vertically */
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #fff; /* White background color for the form */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Adding a shadow effect */
+}
+
+.login-form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4b7bec; /* Blue heading color */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: #495057; /* Dark gray label color */
+}
+
+input[type="email"],
+input[type="password"] {
+  width: calc(100% - 22px); /* Adjusting the width of the input fields */
+  /* Padding and border styles remain the same */
+  padding: 10px;
+  border: 1px solid #ced4da; /* Light gray border color */
+  border-radius: 5px;
+  margin: 0 auto; /* Center the input fields */
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #51cf66; /* Green button background color */
+  color: #fff; /* White button text color */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #37b743; /* Darker green button background color on hover */
+}
+
+.error {
+  color: #dc3545; /* Red error text color */
+  font-size: 0.8em;
+}
+
+.signup-link {
+  text-align: center; /* Center align the signup link */
+  margin-top: 20px; /* Add some spacing between the form and the signup link */
+}
+
+.signup-link a {
+  color: #ff6b6b; /* Red signup link color */
+  text-decoration: none; /* Remove underline */
+}
+
+.signup-link a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
